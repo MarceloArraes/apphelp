@@ -31,16 +31,21 @@ export function Order({ data, ...rest }: Props) {
       rounded='sm'
       overflow={'hidden'}
     >
-      <Box h='full' bg={statusColor} />
-      <VStack flex={1} w={2} my={5} ml={5}>
-        <Text  color={'white'} fontSize={'md'}>Patrimônio {data.patrimony}</Text>
+      <Box h='full' w={2} bg={statusColor} />
+      <VStack flex={1} my={5} ml={5}>
+          <Text color={'white'} fontSize={'md'}>
+            Patrimônio {data.patrimony}
+          </Text>
+
         <HStack space={5}>
-          <ClockAfternoon size={20} color={'white'} />
+          <ClockAfternoon size={24} color={'white'} />
           <Text color={'gray.200'} fontSize={'xs'}>{data.when}</Text>
         </HStack>
       </VStack>
       <Circle bg='gray.500' h={12} w={12} mr={5}>
-        {data.status ==='closed'? <CircleWavyCheck size={12} color={'white'} /> : <Hourglass size={20} color={'white'} />}
+          {data.status === 'closed' ?
+            <CircleWavyCheck size={24} color={'white'} />
+            : <Hourglass size={24} color={'white'} />}
       </Circle>
       </HStack>
       </Pressable>
