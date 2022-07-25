@@ -1,5 +1,6 @@
 import { HStack, IconButton, Text, useTheme, VStack, Heading, FlatList, Center } from 'native-base';
-import React,{useState} from 'react';
+import React, { useState } from 'react';
+import auth from '@react-native-firebase/auth';
 import { SignOut, ChatTeardropText} from 'phosphor-react-native'
 import Logo from '../assets/logo_secondary.svg';
 import {Filter} from '../components/Filter';
@@ -62,6 +63,17 @@ export function Home() {
     navigation.navigate('details', {orderId});
   }
 
+  function handleLogout() {
+    //auth()
+    //  .signOut();
+    //  .catch (error => {
+    //  console.log(error);
+    // return Alert.alert(error.message);
+    //}
+    console.log('logout');
+
+  }
+
   const {colors} = useTheme();
   return (
     <VStack flex={1} pb={6} bg="gray.700">
@@ -75,7 +87,10 @@ export function Home() {
       >
         <Logo width={'100%'} />
 
-        <IconButton size={26} icon={<SignOut size={26} color={colors.gray[300]} />} />
+        <IconButton
+          size={26}
+          icon={<SignOut size={26} color={colors.gray[300]} />}
+          onPress={handleLogout} />
       </HStack>
 
       <VStack flex={1} px={6} >
@@ -127,7 +142,8 @@ export function Home() {
         )}
         />
       </VStack>
-      <Button title={"Nova Solicitação!"} onPress={handleNewOrder} />
+      <Button title={"Nova Solicitação!"} onPress={handleNewOrder} marginY={5} />
+      <Button title={"Signin"} onPress={()=>navigation.navigate('signin')}  />
     </VStack>
   );
 }
