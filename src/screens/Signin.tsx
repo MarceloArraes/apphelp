@@ -1,4 +1,6 @@
 import { VStack, Heading, Icon, useTheme } from 'native-base';
+import { Alert } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react'
 import Logo from '../assets/logo_primary.svg'
 import {Input} from '../components/Input'
@@ -9,6 +11,21 @@ export const Signin = () => {
   const { colors } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSignin = () => {
+    if(!email || !password) return Alert.alert('Please fill all fields');
+
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('Signed in');
+      }
+    )
+      .catch(error => {
+        console.log(error);
+      }
+    );
+  }
 
   return (
     <VStack flex={1} alignItems="center" bg="gray.600" px={8} pt={24}>
@@ -31,7 +48,7 @@ export const Signin = () => {
         secureTextEntry
         InputLeftElement={<Icon marginLeft={'2.5'} as={<Key color={colors.gray[300]} />} />}
       />
-      <Button title={"MARCELO ARRAES"} mb={4} />
+      <Button title={"Submit"} mb={4} onPress={handleSignin} />
       <Button title={"Hello World"} mb={4}  />
     </VStack>
   )

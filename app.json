@@ -5,6 +5,17 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "plugins": [
+      "@react-native-firebase/app"
+    ],
+    "android": {
+      "package": "com.apphelp",
+      "googleServicesFile": "google-services.json"
+    },
+    "ios": {
+      "bundleIdentifier": "com.apphelp",
+      "googleServicesFile": "GoogleService-Info.plist"
+    }
   }
 }
