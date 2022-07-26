@@ -6,6 +6,7 @@ export declare global{
       details: {
         orderId: string;
       }
+      signin: undefined;
     }
 
 }
