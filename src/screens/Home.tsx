@@ -1,8 +1,7 @@
-import { HStack, IconButton, Text, useTheme, VStack, Heading, FlatList, Center } from 'native-base';
+import { HStack, IconButton, Text, useTheme, VStack, Heading, FlatList, Center, Alert } from 'native-base';
 import React, { useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import { SignOut, ChatTeardropText} from 'phosphor-react-native'
-import Logo from '../assets/logo_secondary.svg';
 import {Filter} from '../components/Filter';
 import {Order, OrderProps} from '../components/Order';
 import { Button } from '../components/Button';
@@ -64,12 +63,12 @@ export function Home() {
   }
 
   function handleLogout() {
-    //auth()
-    //  .signOut();
-    //  .catch (error => {
-    //  console.log(error);
-    // return Alert.alert(error.message);
-    //}
+    auth()
+     .signOut()
+     .catch (error => {
+     console.log(error);
+    return Alert(error.message);
+    });
     console.log('logout');
 
   }
@@ -85,7 +84,7 @@ export function Home() {
         pb={5}
         px={6}
       >
-        <Logo width={'100%'} />
+        {/* <Logo width={'100%'} /> */}
 
         <IconButton
           size={26}
